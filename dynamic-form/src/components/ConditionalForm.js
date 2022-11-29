@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { Row, Col, Form, Button, Table } from "react-bootstrap";
 
 function ConditionalForm() {
+  // A piece of state to store an array of objects containing the user's final selections
   const [finalVars, setFinalVars] = useState();
-  // A state array objects that is used to build a form out of JSX via a map function.
+
+  // A state array of objects that is used to build a form out of JSX via a map function.
   // Each object has a "type" attribute which is used to treat types differently
-  // in the functions that build the form and update state
+  // in the functions that build the form and update state.
+  // This array gets updated dynamically as the user works through the form.
   const [formVars, setFormVars] = useState([
     {
       parentOption: null,
@@ -119,6 +122,8 @@ function ConditionalForm() {
     });
   }
 
+  // After the user clicks submit, this function builds an array containing only variables that reflect the
+  // user's final selection.
   function submitForm(e) {
     e.preventDefault();
     const finalVarsArray = [];
@@ -131,6 +136,8 @@ function ConditionalForm() {
 
   // Log out the formVars array on each state change to check if its values are updating correctly
   console.log("formars", formVars);
+
+  // Log out the final variable array too
   console.log("final vars", finalVars);
 
   // The below JSX maps out the formVars array into a working form, treating each question type uniquely
